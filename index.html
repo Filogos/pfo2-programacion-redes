@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PFO 2 — Programación en Redes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 960px;
+      margin: auto;
+      padding: 24px;
+      background: #f3f5f7;
+      color: #243040;
+    }
+    section {
+      background: white;
+      padding: 24px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+    h1, h2 { color: #174b75; }
+    img { width: 100%; height: auto; }
+    a { color: #174b75; }
+    code { background: #edf0f3; padding: 3px 6px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      border: 1px solid #d1d8df;
+      padding: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sistema de Gestión de Tareas</h1>
+    <p>PFO 2 — Programación en Redes — IFTS N.º 29</p>
+  </header>
+
+  <section>
+    <h2>Descripción</h2>
+    <p>
+      Aplicación cliente-servidor desarrollada con Python, Flask y SQLite.
+      Permite registrar usuarios, iniciar sesión y acceder a una
+      bienvenida protegida. Las contraseñas se almacenan como hashes.
+    </p>
+    <p>
+      El cliente de consola utiliza Requests para comunicarse mediante
+      HTTP y conserva la cookie de sesión.
+    </p>
+  </section>
+
+  <section>
+    <h2>Funciones implementadas</h2>
+    <table>
+      <thead>
+        <tr><th>Método</th><th>Ruta</th><th>Función</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>POST</td><td>/registro</td>
+          <td>Registro de usuarios con contraseñas hasheadas.</td>
+        </tr>
+        <tr>
+          <td>POST</td><td>/login</td>
+          <td>Verificación de credenciales e inicio de sesión.</td>
+        </tr>
+        <tr>
+          <td>GET</td><td>/tareas</td>
+          <td>Bienvenida HTML para usuarios autenticados.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Pruebas realizadas</h2>
+    <p>
+      La captura muestra el registro exitoso (201), el inicio de sesión
+      exitoso (200) y el acceso autorizado a la bienvenida (200).
+      También muestra el rechazo de acceso sin sesión y de credenciales
+      incorrectas (401).
+    </p>
+    <img src="capturas/prueba_exitosa.png"
+         alt="Terminales del servidor y cliente mostrando las pruebas">
+  </section>
+
+  <section>
+    <h2>¿Por qué hashear contraseñas?</h2>
+    <p>
+      El hash evita guardar la contraseña en texto plano. Si alguien
+      accede a la base de datos, no puede leerla directamente.
+      Werkzeug genera el hash con una sal aleatoria y permite verificar
+      la contraseña ingresada sin recuperar la original.
+      Las contraseñas débiles aún pueden ser vulnerables a intentos
+      de adivinación.
+    </p>
+
+    <h2>Ventajas de SQLite</h2>
+    <p>
+      No requiere un servidor independiente, guarda los datos en un
+      archivo y está integrado con Python. Ofrece persistencia,
+      consultas SQL, restricciones y transacciones, por lo que resulta
+      adecuado para el alcance de este proyecto.
+    </p>
+  </section>
+
+  <section>
+    <h2>Código e instrucciones</h2>
+    <ul>
+      <li><a href="servidor.py">Consultar servidor.py</a></li>
+      <li><a href="cliente.py">Consultar cliente.py</a></li>
+      <li><a href="README.md">Consultar README.md</a></li>
+      <li><a href="requirements.txt">Consultar dependencias</a></li>
+    </ul>
+    <p>
+      Esta página presenta la entrega y sus evidencias.
+      Para ejecutar la API Flask y el cliente, seguí las instrucciones
+      del README. GitHub Pages no ejecuta el servidor Python.
+    </p>
+  </section>
+</body>
+</html>
